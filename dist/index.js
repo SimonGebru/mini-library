@@ -31,7 +31,7 @@ function renderBookDetailsOverlay(book) {
     const overlayPages = document.getElementById("overlay-pages");
     const overlayYear = document.getElementById("overlay-year");
     const overlayPublisher = document.getElementById("overlay-publisher");
-    const overlayBookItem = document.getElementById("overlay-book-item");
+    const overlayBookCover = document.getElementById("overlay-book-cover");
     const closeOverlay = document.getElementById("close-overlay");
     if (!overlay ||
         !overlayTitle ||
@@ -41,11 +41,12 @@ function renderBookDetailsOverlay(book) {
         !overlayPages ||
         !overlayYear ||
         !overlayPublisher ||
-        !overlayBookItem ||
+        !overlayBookCover ||
         !closeOverlay) {
         console.error("Overlay-element saknas i DOM.");
         return;
     }
+    // Fyll overlay med bokens data
     overlayTitle.textContent = book.title;
     overlayAuthor.textContent = `By ${book.author}`;
     overlayDescription.textContent = book.plot || "No description available.";
@@ -53,8 +54,16 @@ function renderBookDetailsOverlay(book) {
     overlayPages.textContent = book.pages ? `${book.pages}` : "N/A";
     overlayYear.textContent = book.year ? `${book.year}` : "N/A";
     overlayPublisher.textContent = book.publisher || "Unknown publisher";
-    overlayBookItem.style.backgroundColor = book.color;
+    // Ställ in rätt bokomslag
+    overlayBookCover.src = `Cover/${book.id}.jpg`; // Dynamiskt referera till rätt bild baserat på bok-ID
+    overlayBookCover.alt = `${book.title} cover`;
+    // Hantera fallback om bilden inte finns
+    overlayBookCover.onerror = () => {
+        overlayBookCover.src = "cover/default.jpg"; // Standardbild om bokomslaget saknas
+    };
+    // Visa overlay
     overlay.classList.add("visible");
+    // Stäng overlay-funktion
     closeOverlay.addEventListener("click", () => {
         overlay.classList.remove("visible");
     });
@@ -64,6 +73,7 @@ function renderBookDetailsOverlay(book) {
         }
     });
 }
+// Rendera boklista
 function renderBookList(books) {
     const bookListElement = document.getElementById("book-list");
     if (!bookListElement)
@@ -84,6 +94,7 @@ function renderBookList(books) {
             renderBookDetailsOverlay(selectedBook);
     }));
 }
+// Initiera appen
 function init() {
     return __awaiter(this, void 0, void 0, function* () {
         try {

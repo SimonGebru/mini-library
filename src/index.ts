@@ -3,11 +3,11 @@ interface Book {
     title: string;
     author: string;
     color: string;
-    description?: string; 
-    audience?: string; 
-    pages?: number; 
-    year?: number; 
-    publisher?: string; 
+    description?: string;
+    audience?: string;
+    pages?: number;
+    year?: number;
+    publisher?: string;
     plot?: string;
   }
   
@@ -25,7 +25,7 @@ interface Book {
   }
   
   // Funktion för att visa overlay med bokinformation
-function renderBookDetailsOverlay(book: Book): void {
+  function renderBookDetailsOverlay(book: Book): void {
     const overlay = document.getElementById("book-overlay");
     const overlayTitle = document.getElementById("overlay-title");
     const overlayAuthor = document.getElementById("overlay-author");
@@ -34,10 +34,9 @@ function renderBookDetailsOverlay(book: Book): void {
     const overlayPages = document.getElementById("overlay-pages");
     const overlayYear = document.getElementById("overlay-year");
     const overlayPublisher = document.getElementById("overlay-publisher");
-    const overlayBookItem = document.getElementById("overlay-book-item");
+    const overlayBookCover = document.getElementById("overlay-book-cover") as HTMLImageElement;
     const closeOverlay = document.getElementById("close-overlay");
   
-    
     if (
       !overlay ||
       !overlayTitle ||
@@ -47,7 +46,7 @@ function renderBookDetailsOverlay(book: Book): void {
       !overlayPages ||
       !overlayYear ||
       !overlayPublisher ||
-      !overlayBookItem ||
+      !overlayBookCover ||
       !closeOverlay
     ) {
       console.error("Overlay-element saknas i DOM.");
@@ -63,7 +62,10 @@ function renderBookDetailsOverlay(book: Book): void {
     overlayYear.textContent = book.year ? `${book.year}` : "N/A";
     overlayPublisher.textContent = book.publisher || "Unknown publisher";
   
-    overlayBookItem.style.backgroundColor = book.color;
+    // Ställ in rätt bokomslag
+    overlayBookCover.src = `Cover/${book.id}.jpg`; 
+    overlayBookCover.alt = `${book.title} cover`;
+  
   
     
     overlay.classList.add("visible");
@@ -105,8 +107,7 @@ function renderBookDetailsOverlay(book: Book): void {
       })
     );
   }
-  
-  
+ 
   async function init(): Promise<void> {
     try {
       const books = await fetchBooks();

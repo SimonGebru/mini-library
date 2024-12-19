@@ -22,43 +22,43 @@ main {
 
 #book-list {
   display: flex;
-  flex-wrap: nowrap; /* Låter böckerna ligga på en rad */
-  overflow-x: auto; /* Lägger till horisontell scroll om böckerna inte får plats */
-  gap: 1.5rem; /* Ökar mellanrum mellan böckerna */
+  flex-wrap: nowrap;
+  overflow-x: auto; 
+  gap: 1.5rem; 
   padding: 1rem;
 }
 
 .book-item {
-  position: relative; /* Gör att ::before kan positioneras relativt till boken */
-  flex: 0 0 200px; /* Fixar bredden till 200px */
-  width: 200px; /* Bokbredd */
-  height: 250px; /* Bokhöjd */
-  text-align: center; /* Centrera texten */
-  border-radius: 4px; /* Lätta rundade hörn */
+  position: relative; 
+  flex: 0 0 200px; 
+  width: 200px; 
+  height: 250px; 
+  text-align: center; 
+  border-radius: 4px; 
   box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.2), -2px 2px 4px rgba(0, 0, 0, 0.1); /* Skuggor för 3D-effekt */
   transform: perspective(600px) rotateY(-10deg); /* Ger boken en 3D-lutning */
   padding: 1rem;
-  color: white; /* Gör texten vit för bättre kontrast mot färger */
-  font-weight: bold; /* Gör texten lite tjockare */
-  cursor: pointer; /* Ändrar muspekaren till en hand vid hover */
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth effekt för hover */
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.05)); /* Lätt skiftande ljus för realism */
+  color: white; 
+  font-weight: bold; 
+  cursor: pointer; 
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; 
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.05)); 
 }
 
 .book-item::before {
-  content: ""; /* Skapar ett tomt innehåll */
-  position: absolute; /* Positionerar linjen relativt till bokens position */
+  content: ""; 
+  position: absolute; 
   top: 0;
   left: 0.5rem;
-  width: 4px; /* Bredden på bokryggen */
-  height: 100%; /* Full höjd på linjen */
-  background-color: black; /* Färgen på bokryggen */
-  border-radius: 4px 0 0 4px; /* Rundar kanten för att matcha bokens hörn */
+  width: 4px; 
+  height: 100%; 
+  background-color: black; 
+  border-radius: 4px 0 0 4px; 
 }
 
 .book-item:hover {
-  transform: perspective(600px) rotateY(0deg) scale(1.05); /* Rätar upp boken vid hover */
-  box-shadow: -8px 8px 16px rgba(0, 0, 0, 0.3), -4px 4px 8px rgba(0, 0, 0, 0.15); /* Starkare skuggor vid hover */
+  transform: perspective(600px) rotateY(0deg) scale(1.05); 
+  box-shadow: -8px 8px 16px rgba(0, 0, 0, 0.3), -4px 4px 8px rgba(0, 0, 0, 0.15); 
 }
 
 .book-item h2 {
@@ -77,7 +77,7 @@ main {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.95); /* Nästan helt svart bakgrund */
+  background-color: rgba(0, 0, 0, 0.95); 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -92,7 +92,7 @@ main {
   visibility: visible;
 }
 
-/* Overlay-innehåll */
+
 #overlay-content {
   position: relative;
   width: 90%;
@@ -103,7 +103,7 @@ main {
   color: white;
 }
 
-/* Tillbaka-knapp */
+
 #close-overlay {
   position: absolute;
   top: 1rem;
@@ -151,7 +151,7 @@ main {
 #overlay-author {
   font-size: 1.2rem;
   margin-bottom: 1rem;
-  color: #bbb; /* Ljusgrå färg för författare */
+  color: #bbb; 
 }
 
 #overlay-description {
@@ -185,4 +185,23 @@ main {
 
 #overlay-read-button:hover {
   background-color: #f0f0f0;
+}
+
+#overlay-book-item {
+  width: 150px;
+  height: 250px;
+  box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.2), -2px 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden; 
+  position: relative;
+  background-color: #ddd; 
+}
+
+#overlay-book-item img {
+  position: absolute;
+  top: 0;
+  left: 15px;
+  width: 92%; 
+  height: 100%; 
+  object-fit: contain; 
 }
