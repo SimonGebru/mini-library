@@ -1,28 +1,188 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  
-  header {
-    background-color: #f8f9fa;
-    padding: 1rem;
-    text-align: center;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  main {
-    padding: 1rem;
-    display: flex;
-    gap: 2rem;
-  }
-  
-  #book-list {
-    flex: 1;
-  }
-  
-  #book-details {
-    flex: 1;
-    border-left: 1px solid #ddd;
-    padding-left: 1rem;
-  }
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(243, 216, 9);
+}
+
+header {
+  background-color: rgba(128, 128, 128, 0.42);
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+main {
+  padding: 1rem;
+  margin-top: 8rem;
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+}
+
+#book-list {
+  display: flex;
+  flex-wrap: nowrap; /* Låter böckerna ligga på en rad */
+  overflow-x: auto; /* Lägger till horisontell scroll om böckerna inte får plats */
+  gap: 1.5rem; /* Ökar mellanrum mellan böckerna */
+  padding: 1rem;
+}
+
+.book-item {
+  position: relative; /* Gör att ::before kan positioneras relativt till boken */
+  flex: 0 0 200px; /* Fixar bredden till 200px */
+  width: 200px; /* Bokbredd */
+  height: 250px; /* Bokhöjd */
+  text-align: center; /* Centrera texten */
+  border-radius: 4px; /* Lätta rundade hörn */
+  box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.2), -2px 2px 4px rgba(0, 0, 0, 0.1); /* Skuggor för 3D-effekt */
+  transform: perspective(600px) rotateY(-10deg); /* Ger boken en 3D-lutning */
+  padding: 1rem;
+  color: white; /* Gör texten vit för bättre kontrast mot färger */
+  font-weight: bold; /* Gör texten lite tjockare */
+  cursor: pointer; /* Ändrar muspekaren till en hand vid hover */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth effekt för hover */
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.05)); /* Lätt skiftande ljus för realism */
+}
+
+.book-item::before {
+  content: ""; /* Skapar ett tomt innehåll */
+  position: absolute; /* Positionerar linjen relativt till bokens position */
+  top: 0;
+  left: 0.5rem;
+  width: 4px; /* Bredden på bokryggen */
+  height: 100%; /* Full höjd på linjen */
+  background-color: black; /* Färgen på bokryggen */
+  border-radius: 4px 0 0 4px; /* Rundar kanten för att matcha bokens hörn */
+}
+
+.book-item:hover {
+  transform: perspective(600px) rotateY(0deg) scale(1.05); /* Rätar upp boken vid hover */
+  box-shadow: -8px 8px 16px rgba(0, 0, 0, 0.3), -4px 4px 8px rgba(0, 0, 0, 0.15); /* Starkare skuggor vid hover */
+}
+
+.book-item h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.book-item p {
+  font-size: 1rem;
+  margin: 0;
+}
+
+#book-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.95); /* Nästan helt svart bakgrund */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out;
+}
+
+#book-overlay.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Overlay-innehåll */
+#overlay-content {
+  position: relative;
+  width: 90%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  color: white;
+}
+
+/* Tillbaka-knapp */
+#close-overlay {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+}
+
+#close-overlay:hover {
+  color: red;
+}
+
+/* Layout för bok och information */
+#overlay-layout {
+  display: flex;
+  gap: 2rem;
+}
+
+#overlay-book {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#overlay-book-item {
+  width: 150px;
+  height: 250px;
+  box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.2), -2px 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+/* Bokdetaljer */
+#overlay-details {
+  flex: 2;
+  color: white;
+}
+
+#overlay-title {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+#overlay-author {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #bbb; /* Ljusgrå färg för författare */
+}
+
+#overlay-description {
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+#overlay-extra {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  background-color: rgba(255, 255, 255, 0.285);
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+#overlay-extra p {
+  margin: 0;
+}
+
+#overlay-read-button {
+  background-color: white;
+  color: black;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+#overlay-read-button:hover {
+  background-color: #f0f0f0;
+}

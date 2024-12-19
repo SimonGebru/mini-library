@@ -12,8 +12,42 @@
   </header>
   <main>
     <div id="book-list"></div>
-    <div id="book-details" style="display: none;"></div>
   </main>
+
+  <!-- Overlay för bokens information -->
+  <div id="book-overlay" class="hidden">
+    <div id="overlay-content">
+      <!-- Tillbaka-knapp -->
+      <span id="close-overlay">&larr;</span>
+
+      <!-- Layout för bok och information -->
+      <div id="overlay-layout">
+        <!-- Bokbild -->
+        <div id="overlay-book">
+          <div class="book-item" id="overlay-book-item"></div>
+        </div>
+
+        <!-- Bokinformation -->
+        <div id="overlay-details">
+          <h2 id="overlay-title"></h2>
+          <h3 id="overlay-author"></h3>
+          <p id="overlay-description"></p>
+          <div id="overlay-extra">
+            <div>
+              <p><strong>Audience:</strong> <span id="overlay-audience"></span></p>
+              <p><strong>Pages:</strong> <span id="overlay-pages"></span></p>
+            </div>
+            <div>
+              <p><strong>First published:</strong> <span id="overlay-year"></span></p>
+              <p><strong>Publisher:</strong> <span id="overlay-publisher"></span></p>
+            </div>
+          </div>
+          <button id="overlay-read-button">Oh, I want to read it!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="index.js"></script>
 </body>
 </html>
