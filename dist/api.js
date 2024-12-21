@@ -7,17 +7,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { fetchBooks } from "./api.js";
-import { renderBookList } from "./render.js";
-function init() {
+const API_URL = "https://my-json-server.typicode.com/zocom-christoffer-wallenberg/books-api/books";
+export function fetchBooks() {
     return __awaiter(this, void 0, void 0, function* () {
-        try {
-            const books = yield fetchBooks();
-            renderBookList(books);
+        const response = yield fetch(API_URL);
+        if (!response.ok) {
+            throw new Error("Failed to fetch books");
         }
-        catch (error) {
-            console.error(error);
-        }
+        const data = yield response.json();
+        console.log(data);
+        return data;
     });
 }
-init();
