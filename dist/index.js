@@ -9,11 +9,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { fetchBooks } from "./api.js";
 import { renderBookList } from "./render.js";
+import { addSearchFunctionality } from "./search.js";
+export let books = [];
 function init() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const books = yield fetchBooks();
+            books = yield fetchBooks();
             renderBookList(books);
+            addSearchFunctionality(); // sökfunktionen
         }
         catch (error) {
             console.error(error);
