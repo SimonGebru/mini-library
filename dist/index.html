@@ -1,59 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bibliotek</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  <header>
-    <h1>Mitt Bibliotek</h1>
-    <div id="search-container">
-      <input type="text" id="search-input" placeholder="Sök efter en boktitel..." />
-      <button id="search-button">Sök</button>
-    </div>
-  </header>
-  <main>
-    <div id="book-list"></div>
-  </main>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bibliotek</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Mitt Bibliotek</h1>
+      <div id="search-container">
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Sök efter en boktitel..."
+        />
+        <button id="search-button">Sök</button>
+      </div>
+    </header>
+    <main>
+      <div id="book-list"></div>
+    </main>
 
-  <!-- Overlay för bokens information -->
-  <div id="book-overlay" class="hidden">
-    <div id="overlay-content">
-      <!-- Tillbaka-knapp -->
-      <span id="close-overlay">&larr;</span>
+    <!-- Overlay för bokens information -->
+    <div id="book-overlay" class="hidden">
+      <div id="overlay-content">
+        <!-- Tillbaka-knapp -->
+        <span id="close-overlay">&larr;</span>
 
-      <!-- Layout för bok och information -->
-      <div id="overlay-layout">
-        <!-- Bokbild -->
-        <div id="overlay-book">
-          <div class="book-item" id="overlay-book-item">
-            <img id="overlay-book-cover" alt="Book cover" />
-          </div>
-        </div>
-
-        <!-- Bokinformation -->
-        <div id="overlay-details">
-          <h2 id="overlay-title"></h2>
-          <h3 id="overlay-author"></h3>
-          <p id="overlay-description"></p>
-          <div id="overlay-extra">
-            <div>
-              <p><strong>Audience:</strong> <span id="overlay-audience"></span></p>
-              <p><strong>Pages:</strong> <span id="overlay-pages"></span></p>
-            </div>
-            <div>
-              <p><strong>First published:</strong> <span id="overlay-year"></span></p>
-              <p><strong>Publisher:</strong> <span id="overlay-publisher"></span></p>
+        <!-- Layout för bok och information -->
+        <div id="overlay-layout">
+          <!-- Bokbild -->
+          <div id="overlay-book">
+            <div class="book-item" id="overlay-book-item">
+              <img id="overlay-book-cover" alt="Book cover" />
             </div>
           </div>
-          <button id="overlay-read-button">Oh, I want to read it!</button>
+
+          <!-- Bokinformation -->
+          <div id="overlay-details">
+            <h2 id="overlay-title"></h2>
+            <h3 id="overlay-author"></h3>
+            <p id="overlay-description"></p>
+            <div id="overlay-extra">
+              <div>
+                <p>
+                  <strong>Audience:</strong> <span id="overlay-audience"></span>
+                </p>
+                <p><strong>Pages:</strong> <span id="overlay-pages"></span></p>
+              </div>
+              <div>
+                <p>
+                  <strong>First published:</strong>
+                  <span id="overlay-year"></span>
+                </p>
+                <p>
+                  <strong>Publisher:</strong>
+                  <span id="overlay-publisher"></span>
+                </p>
+              </div>
+            </div>
+            <button id="overlay-read-button">Oh, I want to read it!</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <script type="module" src="index.js"></script>
-</body>
+    <script type="module" src="index.js"></script>
+  </body>
 </html>
