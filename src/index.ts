@@ -1,7 +1,6 @@
-
 import { Book } from "./interface.js";
 import { fetchBooks } from "./api.js";
-import { renderBookDetailsOverlay, renderBookList } from "./render.js";
+import { renderBookDetailsOverlay,renderBookList } from "./render.js";
 import { addSearchFunctionality } from "./search.js";
 
  
