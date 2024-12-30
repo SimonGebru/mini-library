@@ -9,8 +9,9 @@ export function addSearchFunctionality() {
     }
     const handleSearch = () => {
         const query = searchInput.value.trim().toLowerCase();
+        // Om sökrutan är tom, visa alla böcker
         if (!query) {
-            alert("Vänligen ange en boktitel att söka efter.");
+            renderBookList(books);
             return;
         }
         const filteredBooks = books.filter((book) => book.title.toLowerCase().includes(query));
